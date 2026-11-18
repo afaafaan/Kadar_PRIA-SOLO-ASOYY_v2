@@ -1,0 +1,220 @@
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s4);
+  margin-bottom: var(--s5);
+}
+.tools { display: flex; flex-wrap: wrap; gap: var(--s2); }
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 44px;
+  padding-inline: var(--s3);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--muted);
+}
+.search:focus-within { outline: 2px solid var(--brand); outline-offset: 2px; }
+.search input {
+  width: 10rem;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  outline: none;
+}
+
+/* Map + list */
+.layout {
+  display: grid;
+  gap: var(--s4);
+}
+@media (min-width: 56rem) {
+  .layout { grid-template-columns: minmax(0, 1fr) 20rem; }
+}
+
+.mapPanel,
+.listPanel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.map {
+  height: clamp(20rem, 55vw, 32rem);
+  background: var(--paper);
+  font-family: var(--font);
+}
+
+/* Leaflet chrome, themed */
+.map :global(.leaflet-bar) { border: 1px solid var(--line); box-shadow: none; }
+.map :global(.leaflet-bar a) {
+  width: 36px;
+  height: 36px;
+  line-height: 36px;
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--line);
+}
+.map :global(.leaflet-control-attribution) {
+  background: color-mix(in srgb, var(--surface) 85%, transparent);
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.map :global(.leaflet-control-attribution a) { color: var(--brand); }
+
+.markerSlot { background: none; border: 0; }
+.marker {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--c);
+  border: 3px solid var(--surface);
+  box-shadow: 0 1px 4px rgb(15 39 64 / 0.3);
+  color: var(--on-brand);
+  font: 700 0.8125rem / 1 var(--font);
+  transition: scale 0.2s var(--ease-out);
+}
+.marker[data-selected] {
+  scale: 1.2;
+  outline: 3px solid var(--ink);
+  outline-offset: 1px;
+}
+
+.listPanel { max-height: clamp(20rem, 55vw, 32rem); overflow-y: auto; }
+
+.list li + li { border-top: 1px solid var(--line); }
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--s3);
+  width: 100%;
+  padding: var(--s3) var(--s4);
+  border: 0;
+  background: none;
+  text-align: start;
+  font-weight: 600;
+}
+.row:hover { background: color-mix(in srgb, var(--brand) 6%, transparent); }
+.row[aria-pressed='true'] {
+  background: color-mix(in srgb, var(--brand) 10%, transparent);
+  box-shadow: inset 3px 0 0 var(--brand);
+}
+.row:focus-visible { outline-offset: -2px; }
+.rowName { display: grid; }
+.rowName small { font-size: var(--fs-sm); font-weight: 400; color: var(--muted); }
+.rowAqi { font-size: var(--fs-md); font-weight: 700; }
+
+.empty { display: grid; gap: var(--s3); justify-items: start; padding: var(--s5); color: var(--muted); }
+
+/* Selected city */
+.detail {
+  display: grid;
+  gap: var(--s5);
+  margin-top: var(--s6);
+  padding: clamp(var(--s5), 4vw, var(--s7));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  animation: appear 0.25s var(--ease-out);
+}
+@keyframes appear { from { opacity: 0; translate: 0 6px; } }
+
+.alert {
+  display: flex;
+  gap: var(--s3);
+  max-width: none;
+  padding: var(--s3) var(--s4);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--aqi-usg) 14%, var(--surface));
+  border-left: 4px solid var(--aqi-usg);
+}
+.alert svg { color: var(--aqi-usg); margin-top: 3px; }
+
+.detailHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--s4);
+}
+.detailHead h2 { font-size: var(--fs-xl); font-weight: 800; }
+.region { color: var(--muted); }
+
+.score { display: flex; align-items: center; gap: var(--s4); }
+.scoreNum { font-size: clamp(3rem, 2rem + 4vw, 4.5rem); font-weight: 800; line-height: 1; letter-spacing: -0.04em; }
+.scoreMeta { display: grid; gap: var(--s1); justify-items: start; }
+.scoreMeta small { font-size: var(--fs-sm); color: var(--muted); }
+
+.detailBody { display: grid; gap: var(--s6); }
+@media (min-width: 52rem) { .detailBody { grid-template-columns: 1fr 1fr; } }
+
+.advice { display: grid; gap: var(--s2); align-content: start; }
+.advice p { color: var(--muted); }
+
+.pollutants {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s4) var(--s5);
+}
+.pollutants div { padding-top: var(--s3); border-top: 1px solid var(--line); }
+.pollutants dt { font-size: var(--fs-sm); color: var(--muted); }
+.pollutants dd { font-size: var(--fs-lg); font-weight: 700; }
+.pollutants small { font-size: var(--fs-sm); font-weight: 500; color: var(--muted); }
+
+.subhead { font-size: var(--fs-md); margin-top: var(--s2); }
+
+.activities { display: grid; }
+@media (min-width: 40rem) { .activities { grid-template-columns: 1fr 1fr; column-gap: var(--s6); } }
+.activities li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s3);
+  padding-block: var(--s3);
+  border-top: 1px solid var(--line);
+}
+
+.verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  text-align: end;
+}
+.verdict::before {
+  content: '';
+  width: 0.625rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--v);
+  flex-shrink: 0;
+}
+.verdict[data-v='ok'] { --v: var(--aqi-good); }
+.verdict[data-v='caution'] { --v: var(--aqi-moderate); }
+.verdict[data-v='avoid'] { --v: var(--aqi-unhealthy); }
+
+.detailActions { display: flex; flex-wrap: wrap; gap: var(--s2); }
+
+/* ---------- Kulit v3.2 ---------- */
+.mapPanel, .listPanel, .detail { box-shadow: var(--shadow); }
+.row { transition: transform 0.2s, background-color 0.2s; }
+.row:hover { transform: translateX(4px); }
+.search { border-radius: 999px; }
+.marker { border-color: #fff; cursor: pointer; }
+.marker[data-selected] { outline-color: var(--orange); }
+.scoreNum { font-family: var(--font-head); color: var(--brand); }
+.alert { border-left-color: var(--orange); background: color-mix(in srgb, var(--orange) 16%, var(--surface)); }
+.alert svg { color: var(--orange); }
+.activities li { transition: background-color 0.2s; }
+.activities li:hover { background: color-mix(in srgb, var(--brand) 6%, transparent); }

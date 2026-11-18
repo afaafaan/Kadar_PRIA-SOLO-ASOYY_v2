@@ -1,0 +1,7 @@
+.logo { display: block; height: 42px; width: auto; }
+
+/* Logo bertulisan biru tua: di tema gelap dibuat putih agar tetap terbaca. */
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name='color-scheme'][content='light'])) .logo { filter: brightness(0) invert(1); }
+}
+:root:has(> head > meta[name='color-scheme'][content='dark']) .logo { filter: brightness(0) invert(1); }

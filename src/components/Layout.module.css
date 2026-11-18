@@ -1,0 +1,199 @@
+.skip {
+  position: absolute;
+  inset-inline-start: var(--s4);
+  inset-block-start: -100px;
+  z-index: 60;
+  padding: var(--s2) var(--s4);
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius-sm);
+}
+.skip:focus { inset-block-start: var(--s3); }
+
+/* Efek kaca (liquid glass) dipakai bersama oleh navbar, menu mobile, dan chip jam. */
+.pill, .menu, .clock {
+  border: 1px solid light-dark(rgb(255 255 255 / 0.65), rgb(255 255 255 / 0.2));
+  background: linear-gradient(135deg, light-dark(rgb(255 255 255 / 0.62), rgb(50 85 125 / 0.6)), light-dark(rgb(255 255 255 / 0.2), rgb(15 35 58 / 0.4)));
+  -webkit-backdrop-filter: blur(22px) saturate(190%);
+  backdrop-filter: blur(22px) saturate(190%);
+  box-shadow: inset 0 1px 1px light-dark(rgb(255 255 255 / 0.95), rgb(255 255 255 / 0.28)), 0 12px 36px light-dark(rgb(20 70 130 / 0.2), rgb(0 0 0 / 0.45));
+}
+
+/* ---------- Navbar pill ---------- */
+.header {
+  position: fixed;
+  inset-block-start: 14px;
+  inset-inline: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  padding-inline: 12px;
+  pointer-events: none;
+}
+.pill {
+  position: relative;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  width: min(100%, 72rem);
+  padding: 7px 10px 7px 18px;
+  border-radius: 999px;
+}
+.pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(120% 150% at 12% -40%, light-dark(rgb(255 255 255 / 0.75), rgb(255 255 255 / 0.12)), transparent 55%);
+  pointer-events: none;
+}
+.brand { display: flex; align-items: center; border-radius: var(--radius-sm); }
+.main { padding-top: 5.5rem; min-height: 70vh; }
+
+.nav { display: flex; flex: 1; justify-content: flex-end; }
+.menuButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 40px;
+  padding: 0 var(--s4);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+}
+
+/* Layar sempit: daftar menu berupa popover bawaan browser di bawah pill. */
+.menu {
+  position: fixed;
+  inset: auto;
+  inset-block-start: 5rem;
+  inset-inline: 12px;
+  width: min(100% - 24px, 20rem);
+  margin-inline: auto;
+  padding: var(--s2);
+  border-radius: 22px;
+  color: var(--ink);
+}
+.link {
+  display: flex;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 var(--s4);
+  border-radius: 999px;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 0.8125rem;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.2s;
+}
+.link:hover { background: color-mix(in srgb, var(--surface) 55%, transparent); text-decoration: none; }
+/* Halaman aktif: pill kaca yang lebih terang, bukan hanya warna. */
+.link[aria-current='page'] {
+  color: var(--brand);
+  background: light-dark(rgb(255 255 255 / 0.85), rgb(255 255 255 / 0.18));
+  box-shadow: 0 2px 10px light-dark(rgb(20 70 130 / 0.14), rgb(0 0 0 / 0.3)), inset 0 1px 1px light-dark(#fff, rgb(255 255 255 / 0.3));
+}
+
+.actions { display: flex; align-items: center; gap: var(--s2); }
+.theme {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  color: var(--ink);
+  transition: transform 0.3s var(--ease-out), border-color 0.2s;
+}
+.theme:hover { transform: rotate(25deg) scale(1.08); border-color: var(--orange); }
+.contact {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--on-brand);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.2s var(--ease-out), box-shadow 0.2s;
+}
+.contact span { color: var(--orange); }
+.contact:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgb(16 44 80 / 0.25); text-decoration: none; }
+@media (min-width: 40rem) { .contact { display: inline-flex; } }
+
+@media (min-width: 60rem) {
+  .menuButton { display: none; }
+  .nav { justify-content: center; }
+  .menu {
+    position: static;
+    display: flex;
+    gap: var(--s1);
+    width: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+/* ---------- Chip tanggal & jam (selalu terlihat) ---------- */
+.clock {
+  position: fixed;
+  inset-inline-start: 14px;
+  inset-block-end: 14px;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 17px 9px 13px;
+  border-radius: 999px;
+  line-height: 1.25;
+}
+.clock strong { display: block; font: 800 0.9375rem var(--font-head); }
+.clock small { font-size: 0.625rem; color: var(--muted); }
+.liveDot { width: 6px; height: 6px; border-radius: 50%; background: var(--aqi-good); flex-shrink: 0; }
+@media (max-width: 43.75rem) {
+  .clock { inset-inline-start: 10px; inset-block-end: 10px; padding: 7px 13px 7px 10px; }
+  .clock strong { font-size: 0.8125rem; }
+  .clock small { font-size: 0.5625rem; }
+}
+
+/* ---------- Footer (gelap, gaya v3.2) ---------- */
+.footer {
+  margin-top: var(--s9);
+  padding-block: var(--s7) var(--s5);
+  background: #0c2440;
+  color: #d7e6f7;
+  font-size: var(--fs-sm);
+}
+.footerGrid {
+  display: grid;
+  gap: var(--s6);
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  align-items: start;
+}
+.footerBrand { display: grid; gap: var(--s3); }
+.footerBrand p { color: rgb(215 230 247 / 0.75); max-width: 28ch; font-size: var(--fs-sm); }
+.footer .footerLogo { filter: brightness(0) invert(1); height: 48px; }
+.footerList { display: grid; gap: var(--s2); }
+.footerList a { color: #d7e6f7; text-decoration: none; transition: color 0.2s, transform 0.2s; display: inline-block; }
+.footerList a:hover { color: #fff; transform: translateX(4px); text-decoration: none; }
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s3) var(--s6);
+  margin-top: var(--s7);
+  padding-top: var(--s5);
+  border-top: 1px solid rgb(215 230 247 / 0.18);
+  color: rgb(215 230 247 / 0.7);
+}

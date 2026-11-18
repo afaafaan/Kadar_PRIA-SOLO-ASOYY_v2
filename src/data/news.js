@@ -1,0 +1,51 @@
+// Same articles as the prototype; the decorative art fields were dropped.
+export const news = [
+  {
+    title: 'Polusi udara dan dampaknya bagi kesehatan: mengapa kita perlu peduli?',
+    category: 'Kesehatan',
+    summary: 'Memahami hubungan kualitas udara dengan kesehatan adalah langkah awal melindungi diri.',
+    url: 'https://www.who.int/health-topics/air-pollution',
+    source: 'WHO',
+    minutes: 5,
+  },
+  {
+    title: 'Transportasi rendah emisi sebagai bagian dari solusi udara bersih',
+    category: 'Aksi',
+    summary: 'Pilihan mobilitas sehari-hari ikut menentukan kualitas udara perkotaan.',
+    url: 'https://www.unep.org/explore-topics/air',
+    source: 'UNEP',
+    minutes: 4,
+  },
+  {
+    title: 'Mengenal PM2.5, partikel halus yang perlu diwaspadai',
+    category: 'Polutan',
+    summary: 'Ukurannya yang sangat kecil membuat PM2.5 penting untuk dipantau.',
+    url: 'https://www.epa.gov/pm-pollution/particulate-matter-pm-basics',
+    source: 'US EPA',
+    minutes: 3,
+  },
+  {
+    title: 'Dasar-dasar AQI: cara membaca indeks kualitas udara',
+    category: 'Polutan',
+    summary: 'Panduan singkat membaca kategori AQI dan artinya bagi aktivitasmu.',
+    url: 'https://www.airnow.gov/aqi/aqi-basics/',
+    source: 'AirNow',
+    minutes: 4,
+  },
+  {
+    title: 'Kebakaran hutan dan lahan: dampaknya pada kualitas udara',
+    category: 'Aksi',
+    summary: 'Asap karhutla dapat menurunkan kualitas udara hingga ke wilayah yang jauh.',
+    url: 'https://www.unep.org/explore-topics/air',
+    source: 'UNEP',
+    minutes: 5,
+  },
+  {
+    title: 'Udara dalam ruangan: apa yang bisa kita lakukan?',
+    category: 'Kesehatan',
+    summary: 'Ventilasi dan kebiasaan rumah tangga memengaruhi udara yang kita hirup.',
+    url: 'https://www.who.int/health-topics/air-pollution',
+    source: 'WHO',
+    minutes: 3,
+  },
+]

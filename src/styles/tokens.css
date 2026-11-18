@@ -1,0 +1,56 @@
+/* Design tokens. Colours use light-dark(), driven by `color-scheme` below. */
+:root {
+  color-scheme: light dark;
+
+  &:has(> head > meta[name="color-scheme"][content="dark"]) { color-scheme: dark; }
+  &:has(> head > meta[name="color-scheme"][content="light"]) { color-scheme: light; }
+
+  /* Base palette */
+  --paper: light-dark(#f5f9ff, #081626);
+  --surface: light-dark(#ffffff, #10243a);
+  --ink: light-dark(#102c50, #e9f2ff);
+  --muted: light-dark(#4a6079, #9db0c6);
+  --line: light-dark(#dce7f5, #29425d);
+  --brand: light-dark(#1455a3, #79b5ff);
+  --surface-2: light-dark(#edf4ff, #142d48);
+  --brand-2: light-dark(#5e9ff0, #83baff);
+  --orange: #f5a64a;
+  --shadow-c: light-dark(rgb(31 76 129 / 0.12), rgb(0 0 0 / 0.35));
+  --shadow: 0 20px 50px var(--shadow-c);
+  --on-brand: light-dark(#ffffff, #0b1724);
+
+  /* AQI scale: the only place colour carries meaning. ≥3:1 on paper; ≥4.5:1 with marker text (on-brand). */
+  --aqi-good: light-dark(#23784f, #4cc38a);
+  --aqi-moderate: light-dark(#8a6200, #e8b730);
+  --aqi-usg: light-dark(#b25209, #f2914a);
+  --aqi-unhealthy: light-dark(#c8372d, #f0685d);
+  --aqi-very: light-dark(#7e3fa0, #b98ad6);
+  --aqi-hazardous: light-dark(#7a1f35, #e07c94);
+
+  /* Type: Manrope (judul) + DM Sans (isi), gaya v3.2. Scale after Bringhurst: 14 · 17 · 21 · 24 · 36–48 · 44–72 */
+  --font: 'DM Sans', system-ui, sans-serif;
+  --font-head: 'Manrope', 'DM Sans', system-ui, sans-serif;
+  --fs-sm: 0.875rem;
+  --fs-base: 1.0625rem;
+  --fs-md: 1.3125rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: clamp(2.25rem, 1.6rem + 2.4vw, 3rem);
+  --fs-hero: clamp(2.75rem, 1.5rem + 5vw, 4.5rem);
+
+  /* Space: 4px base */
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.75rem;
+  --s4: 1rem;
+  --s5: 1.5rem;
+  --s6: 2rem;
+  --s7: 3rem;
+  --s8: 4rem;
+  --s9: 6rem;
+
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --measure: 65ch;
+  --radius-sm: 8px;
+  --radius: 14px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
